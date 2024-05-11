@@ -35,15 +35,27 @@ class MainActivity : AppCompatActivity() {
 
         // RecyclerView
         tarefaAdapter = TarefaAdapter(
-            { id -> confirmarExclusao(id)
-
-            }
+            { id -> confirmarExclusao(id) },
+                { tarefa -> editar(tarefa) }
         )
 
         binding.rvTarefas.adapter = tarefaAdapter
 
         binding.rvTarefas.layoutManager = LinearLayoutManager(this)
     }
+
+    private fun editar(tarefa: Tarefa) {
+        val intent = Intent(
+            this,
+            AdicionarTarefaActivity::class.java
+        )
+    intent.putExtra("tarefa", tarefa)
+
+    startActivity(intent)
+
+
+    }
+
 
     private fun confirmarExclusao(id: Int) {
 
