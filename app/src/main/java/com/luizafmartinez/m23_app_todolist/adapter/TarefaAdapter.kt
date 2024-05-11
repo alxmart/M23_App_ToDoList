@@ -41,7 +41,7 @@ class TarefaAdapter() : RecyclerView.Adapter<TarefaAdapter.TarefaViewHolder>() {
 
     override fun onBindViewHolder(holder: TarefaViewHolder, position: Int) {
         val tarefa = listaTarefas[position]
-        holder.bind()
+        holder.bind(tarefa)
     }
 
     override fun getItemCount(): Int {
