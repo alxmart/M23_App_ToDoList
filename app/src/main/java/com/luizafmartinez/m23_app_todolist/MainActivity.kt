@@ -27,6 +27,14 @@ class MainActivity : AppCompatActivity() {
             )
             startActivity(intent)
         }
+
+        // RecyclerView
+
+
+
+
+
+
     }
 
     override fun onStart() {
