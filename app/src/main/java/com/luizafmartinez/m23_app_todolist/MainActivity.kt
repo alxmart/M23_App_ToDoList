@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding.fabAdicionar.setOnClickListener {
             val intent = Intent(
                 this,
-                AdicionarTarefaActivity::class.java
+                AdicionarTarefaActivity::class.java)
         }
         startActivity(intent)
     }
