@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.luizafmartinez.m23_app_todolist.databinding.ActivityAdicionarTarefaBinding
 import com.luizafmartinez.m23_app_todolist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(
                 this,
                 AdicionarTarefaActivity::class.java)
+            startActivity(intent)
         }
-        startActivity(intent)
     }
 }
