@@ -1,5 +1,6 @@
 package com.luizafmartinez.m23_app_todolist
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,13 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.fab.setOnClickListener {
-            val intent = Intent(this, Ad )
+        binding.fabAdicionar.setOnClickListener {
+            val intent = Intent(
+                this,
+                AdicionarTarefaActivity::class.java
         }
-
-
-
-
-
+        startActivity(intent)
     }
 }
