@@ -70,12 +70,5 @@ class TarefaDAO(context: Context) : ITarefaDAO {
         }
         return listaTarefas
     }
-/*
-        try {
-            db?.execSQL( sql )
-            Log.i("info_db", "Sucesso ao criar tabela")
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Log.i("info_db", "Erro ao criar tabela")
-        }*/
+
 }
