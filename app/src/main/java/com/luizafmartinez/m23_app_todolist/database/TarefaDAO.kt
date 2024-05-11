@@ -33,45 +33,26 @@ class TarefaDAO(context: Context) : ITarefaDAO {
     override fun atualizar(tarefa: Tarefa): Boolean {
 
 
-        try {
-            db?.execSQL( sql )
-            Log.i("info_db", "Sucesso ao criar tabela")
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Log.i("info_db", "Erro ao criar tabela")
-        }
-
-
+        return true
     }
 
     override fun remover(idTarefa: Int): Boolean {
 
 
-
-        try {
-            db?.execSQL( sql )
-            Log.i("info_db", "Sucesso ao criar tabela")
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Log.i("info_db", "Erro ao criar tabela")
-        }
-
+    return true
 
     }
 
     override fun listar(): List<Tarefa> {
 
-
-
+        return emptyList()
+    }
+/*
         try {
             db?.execSQL( sql )
             Log.i("info_db", "Sucesso ao criar tabela")
         } catch (e: Exception) {
             e.printStackTrace()
             Log.i("info_db", "Erro ao criar tabela")
-        }
-
-
-    }
-
+        }*/
 }
