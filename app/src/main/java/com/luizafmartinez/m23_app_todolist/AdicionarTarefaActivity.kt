@@ -19,9 +19,7 @@ class AdicionarTarefaActivity : AppCompatActivity() {
 
         // Recuperar tarefa passada
         var tarefa: Tarefa? = null
-
         val bundle = intent.extras
-
         if (bundle != null) {
             tarefa = bundle.getSerializable("tarefa") as Tarefa
             binding.editTarefa.setText(tarefa.descricao)
@@ -32,11 +30,10 @@ class AdicionarTarefaActivity : AppCompatActivity() {
             if (binding.editTarefa.text.isNotEmpty()) {
 
                 if (tarefa != null) {
-                    editar( tarefa )
+                    editar(tarefa)
                 } else {
                     salvar()
                 }
-
             } else {
                 Toast.makeText(
                     this,
@@ -45,24 +42,28 @@ class AdicionarTarefaActivity : AppCompatActivity() {
                 ).show()
             }
         }
-
     }
 
     private fun editar(tarefa: Tarefa) {
 
         val descricao = binding.editTarefa.text.toString()
-
         val tarefaAtualizar = Tarefa(
             tarefa.idTarefa, descricao, "default"
         )
         val tarefaDAO = TarefaDAO(this)
-        tarefaDAO.atualizar( tarefaAtualizar )
+        if (tarefaDAO.atualizar(tarefaAtualizar)) {
+            Toast.makeText(
+                this,
+                "Tarefa atualizada com sucesso",
+                Toast.LENGTH_SHORT
+            ).show()
+            finish()
+        }
     }
 
-    private fun salvar() {
+    fun salvar() {
 
         val descricao = binding.editTarefa.text.toString()
-
         val tarefa = Tarefa(
             -1,
             descricao,
@@ -70,7 +71,6 @@ class AdicionarTarefaActivity : AppCompatActivity() {
         )
 
         val tarefaDao = TarefaDAO(this)
-
         if (tarefaDao.salvar(tarefa)) {
             Toast.makeText(
                 this,
@@ -80,4 +80,5 @@ class AdicionarTarefaActivity : AppCompatActivity() {
             finish()
         }
     }
+
 }

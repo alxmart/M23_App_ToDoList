@@ -13,6 +13,7 @@ class TarefaDAO(context: Context) : ITarefaDAO {
     override fun salvar(tarefa: Tarefa): Boolean {
 
         val conteudos = ContentValues()
+
         conteudos.put("${DatabaseHelper.COLUNA_DESCRICAO}", tarefa.descricao)
 
         try {
@@ -32,12 +33,30 @@ class TarefaDAO(context: Context) : ITarefaDAO {
 
     override fun atualizar(tarefa: Tarefa): Boolean {
 
+        val args = arrayOf( tarefa.idTarefa.toString() )
+        val conteudo = ContentValues()
+        conteudo.put("${DatabaseHelper.COLUNA_DESCRICAO}", tarefa.descricao)
 
+        try {
+            escrita.update(
+               DatabaseHelper.NOME_TABELA_TAREFAS,
+               conteudo,
+               " ${DatabaseHelper.COLUNA_ID_TAREFA} = ?",
+               args
+            )
+            Log.i("info_db", "Sucesso ao atualizar tarefa")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.i("info_db", "Erro ao atualizar tarefa")
+            return false
+        }
         return true
     }
 
     override fun remover(idTarefa: Int): Boolean {
+
         val args = arrayOf( idTarefa.toString())
+
         try {
             escrita.delete(
                 DatabaseHelper.NOME_TABELA_TAREFAS,
@@ -63,9 +82,10 @@ class TarefaDAO(context: Context) : ITarefaDAO {
                 " FROM ${DatabaseHelper.NOME_TABELA_TAREFAS}"
 
         val cursor = leitura.rawQuery(sql, null)
-
         val indiceId = cursor.getColumnIndex(DatabaseHelper.COLUNA_ID_TAREFA)
+
         val indiceDescricao = cursor.getColumnIndex(DatabaseHelper.COLUNA_DESCRICAO)
+
         val indiceData = cursor.getColumnIndex(DatabaseHelper.COLUNA_DATA_CADASTRO)
 
         while (cursor.moveToNext()) {
